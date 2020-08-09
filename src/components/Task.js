@@ -7,11 +7,14 @@ class Task extends React.Component {
       task_id: this.props.task_id, 
       first_time: true,
       task_name: this.props.task_name,
+      isDone: false,
+      taskNameDecoration: "none",
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTaskNameChange = this.handleTaskNameChange.bind(this);
+    this.handleDoneCheckbox = this.handleDoneCheckbox.bind(this);
   }
 
   handleChange() {
@@ -26,6 +29,19 @@ class Task extends React.Component {
 
   handleTaskNameChange(event) {
     this.setState({task_name: event.target.value});
+  }
+
+  handleDoneCheckbox() {
+    this.setState(function(state) {
+      let newDecoration = "line-through";
+      if (state.isDone) {
+        newDecoration = "none";
+      }
+      return {
+        isDone: !state.isDone,
+        taskNameDecoration: newDecoration
+      };
+    });
   }
 
   render() {
@@ -48,8 +64,9 @@ class Task extends React.Component {
     } else {
       return (
       <div>
-        <input type="checkbox"/>
-        <text>{this.state.task_name}</text>
+        <input type="checkbox" onChange={this.handleDoneCheckbox}/>
+
+        <span style={{textDecoration: this.state.taskNameDecoration}}>{this.state.task_name}</span>
         <button onClick={this.handleChange}>Delete task</button>
       </div>
       );

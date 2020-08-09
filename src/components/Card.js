@@ -69,7 +69,7 @@ class TaskList extends React.Component {
       <div>
         {/* <button onClick={this.addNewTask}>Add new task</button> */}
         <h3>{this.state.card_name}</h3>
-        <text>New tasks: {this.state.total_tasks}</text>
+        <span>New tasks: {this.state.total_tasks}</span>
         <button onClick={this.deleteCard}>Delete card</button>
         
         <div>
