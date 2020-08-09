@@ -10,6 +10,7 @@ class TaskList extends React.Component {
       total_tasks: 0, 
       tasks: [], 
       card_id: this.props.card_id,
+      card_name: this.props.card_name,
       new_task_name: "",
     };
 
@@ -57,7 +58,7 @@ class TaskList extends React.Component {
   }
 
   handleNewTaskNameSubmit() {
-    if (this.state.new_task_name == "") {
+    if (this.state.new_task_name === "") {
       return;
     }
     this.addNewTask();
@@ -67,13 +68,14 @@ class TaskList extends React.Component {
     return (
       <div>
         {/* <button onClick={this.addNewTask}>Add new task</button> */}
-        <button onClick={this.deleteCard}>Delete card</button>
+        <h3>{this.state.card_name}</h3>
         <text>New tasks: {this.state.total_tasks}</text>
+        <button onClick={this.deleteCard}>Delete card</button>
         
         <div>
         <br/>
           <label>
-          Task name:
+          Add new task:
           <input 
             type="text" 
             onChange={this.handleNewTaskNameChange}
